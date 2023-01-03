@@ -1,0 +1,18 @@
+// Theme Colors
+$primary: #213F7D;
+$secondary: #39CDCC;
+$tertiary: #545F7D;
+$background: #E5E5E5;
+$border: rgba(84, 95, 125, 0.15);
+
+@import url('https://fonts.googleapis.com/css2?family=Roboto&family=Work+Sans:wght@300;400;500;600;700&display=swap');
+
+// Font family
+@font-face {
+    font-family: 'AvenirNext Next';
+    src: url(../font-family/avenir-next/AvenirNextLTPro-Regular.otf);
+}
+
+$AvenirNext: 'AvenirNext Next';
+$WorkSans: 'Work Sans', sans-serif;
+$Roboto: 'Roboto', sans-serif;

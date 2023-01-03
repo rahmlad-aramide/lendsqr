@@ -1,0 +1,136 @@
+// Theme
+@import '../.././styles/utilities.scss';
+
+.login-page {
+    flex-direction: column;
+    padding: 0;
+    width: 100%;
+
+    @include tablet {
+        flex-direction: row;
+    }
+
+    .hero,
+    .form {
+        height: 100%;
+        padding-left: 0;
+        padding: 0 1rem;
+        width: 90%;
+
+        @include tablet {
+            min-height: 100vh;
+            width: 50%;
+            // padding-left: clamp(1rem, 4.7%, 67px);
+        }
+    }
+
+    .hero {
+        margin: 0 auto;
+
+        .logo {
+            height: 25%;
+            min-height: 25vh;
+            margin: auto;
+
+            @include tablet {
+                padding-left: 60px;
+            }
+        }
+
+        .image {
+            max-width: 100%;
+            width: 600px;
+            height: 100%;
+            align-items: flex-end;
+
+            @include tablet {
+                min-height: 50vh;
+            }
+        }
+
+        .image img {
+            width: 100%;
+            height: 90%;
+        }
+    }
+
+    .form {
+        margin: 0 auto;
+
+        .title {
+            .welcome {
+                color: $primary;
+                font-family: $AvenirNext;
+                font-style: normal;
+                font-weight: 700;
+                font-size: 40px;
+                line-height: 55px;
+                letter-spacing: -0.04em;
+                margin-bottom: 10px;
+            }
+
+            .headline {
+                color: $tertiary;
+                font-family: $AvenirNext;
+                font-style: normal;
+                font-weight: 400;
+                font-size: 20px;
+                line-height: 27px;
+                margin-bottom: 60px;
+            }
+        }
+
+        input[type=text],
+        input[type=password] {
+            max-width: 420px;
+            display: flex;
+            border: 2px solid $border;
+            border-radius: 5px;
+            padding: 12px;
+            margin-bottom: 24px;
+        }
+
+        input:focus {
+            outline: none;
+        }
+
+        input::placeholder {
+            color: $tertiary;
+            opacity: 0.6;
+        }
+
+        .forgot-password,
+        .login-button {
+            outline: none;
+            border: none;
+            cursor: pointer;
+            font-family: $AvenirNext;
+        }
+
+        .forgot-password {
+            color: $secondary;
+            font-family: $AvenirNext;
+            font-style: normal;
+            font-weight: 600;
+            font-size: 12px;
+            line-height: 16px;
+            background-color: transparent;
+            letter-spacing: 0.1em;
+            margin-bottom: 30px;
+            text-transform: uppercase;
+
+        }
+
+        .login-button {
+            width: 100%;
+            max-width: 447px;
+            background-color: $secondary;
+            color: white;
+            padding: 15px;
+            font-weight: 600;
+            letter-spacing: 0.1em;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+    }
+}

@@ -1,0 +1,14 @@
+@import '../.././styles/utilities.scss';
+
+.layout {
+    background-color: $background;
+    overflow-y: auto;
+    &-content {
+        margin-left: 80px;
+        padding-top: 110px;
+        @include tablet {
+            margin-left: 313px;
+            padding-top: 130px;
+        }
+    }
+}

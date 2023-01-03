@@ -1,0 +1,74 @@
+@import '../.././styles/utilities.scss';
+
+.sidenav {
+    height: 80vh;
+    overflow-y: auto;
+    top: 0;
+    width: 60px;
+    padding: 100px 0;
+    position: fixed;
+    background-color: white;
+    box-shadow: 0px 5px 20px rgba(0, 0, 0, 0.04);
+
+    @include tablet {
+        width: 263px;
+    }
+    &-link:not(li) {
+        margin: 4px 0 0 0;
+        @include tablet {
+            margin: 20px 0;
+        }
+    }
+    &-link {
+        padding: 10px 0;
+        opacity: 0.6;
+        cursor: pointer;
+        justify-content: center;
+
+        @include tablet {
+            padding: 10px;
+            justify-content: start;
+        }
+
+        &.active {
+            opacity: 1;
+        }
+        & img {
+            margin: 0 10px;
+        }
+        .arrow-down {
+            margin: 0;
+            @include tablet {
+                margin: 0 10px;
+            }
+        }
+        
+        &-name {
+            display: none;
+            font-family: $WorkSans;
+            color: $primary;
+            font-style: normal;
+            font-weight: 400;
+            font-size: 16px;
+            line-height: 19px;
+            
+            @include tablet {
+                display: flex;
+            }
+        }
+    }
+    &-heading {
+        display: none;
+        color: $primary;
+        font-family: $primary;
+        font-style: normal;
+        font-weight: 500;
+        font-size: 12px;
+        line-height: 14px;
+        margin: 20px;
+        margin-bottom: 10px;
+        @include tablet {
+            display: flex
+        }
+    }
+}

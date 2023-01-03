@@ -1,23 +1,36 @@
-import logo from './logo.svg';
-import './App.css';
+// import logo from './assets/lendsqr.svg';
+import './App.scss';
+import { Route, Routes } from 'react-router-dom';
+import {Login, Dashboard} from './pages'
+// import { pathname } from 'react-router-dom';
 
 function App() {
+  // const pathname = window.location.pathname;
+  // console.log(pathname)
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      {/* <header>
+        {pathname === "/" ? (
+          <></>
+        ) : (
+          <nav>
+            <img src={logo} alt="Lendsqr" />
+            <ul>
+              <li>
+                <Link to="/">Home</Link>
+              </li>
+              <li>
+                <Link to="/dashboard">Dashboard</Link>
+              </li>
+            </ul>
+          </nav>
+        )}
+      </header> */}
+      <Routes>
+        <Route path="/" element={<Login />} />
+        <Route path="/dashboard" element={<Dashboard />} />
+        <Route></Route>
+      </Routes>
     </div>
   );
 }

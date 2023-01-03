@@ -1,0 +1,97 @@
+@import '../.././styles/utilities.scss';
+
+.top-nav {
+    height: 60px;
+    padding: 20px 0;
+    background-color: #FFFFFF;
+    top: 0;
+    z-index: 1;
+    box-shadow: 3px 0px 20px rgba(0, 0, 0, 0.04);
+    position: fixed;
+    width: 100%;
+
+    .open-nav {
+        height: 60px;
+        justify-content: center;
+    }
+    .close-nav {
+        height: fit-content;
+    }
+    .open-nav, .close-nav {
+        margin-right: 20px;
+    }
+    &-logo img {
+        height: 30px;
+        margin-left: 30px;
+    }
+
+    .username {
+        color: $primary;
+        margin: 0 5px;
+        font-family: $WorkSans;
+        font-style: normal;
+        font-weight: 500;
+        font-size: 16px;
+        line-height: 19px;
+    }
+    
+    .docs, .bell {
+            color: $primary;
+            font-family: $Roboto;
+            font-style: normal;
+            font-weight: 400;
+            font-size: 16px;
+            line-height: 19px;
+    }
+
+    &-links {
+        margin-right: 30px;
+
+        p.docs {
+            margin-right: 10px;
+            text-decoration: underline;
+        }
+        img.bell {
+            height: 22px;
+            padding: 0 20px;
+        }
+        img.avatar {
+            margin: 0 5px;
+            width: 50px;
+            height: 50px;
+        }
+    }
+    .mobile-nav {
+        background: #FFFFFF70;
+        height: 100vh;
+        transition: ease;
+        transition-duration: 500ms;
+        transform: translate(100%, 0);
+        position: fixed;
+        right: 0;
+        top: 0;
+        padding-top: 40px;
+        backdrop-filter:blur(8px);
+        &.active {
+            transform: translate(0%, 0);
+        }
+        ul {
+            margin: 0;
+            padding: 0;
+
+            li {
+                padding: 15px 0;
+                display: flex;
+                align-items: center;
+
+                img {
+                    margin-right: 10px;
+                    width: 15px;
+                }
+            }
+        }
+        &-search {
+            padding: 20px 30px;
+        }
+      }
+}

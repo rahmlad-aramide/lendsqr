@@ -1,0 +1,36 @@
+@import '../.././styles/utilities.scss';
+
+.search {
+    border: 1px solid #213F7D20;
+    border-radius: 8px;
+    input[type=search] {
+        border: none;
+        outline: none;
+        border-radius: 8px;
+        padding: 12px 20px;
+        &::placeholder{
+            opacity: 0.6;
+            font-family: $WorkSans;
+            font-style: normal;
+            font-weight: 400;
+            font-size: 14px;
+            line-height: 16px;
+        }
+    }
+        &-icon {
+            width: 56px;
+            background-color: $secondary;
+            border-top-right-radius: 8px;
+            border-bottom-right-radius: 8px;
+            text-align: center;
+            cursor: pointer;
+    
+            &:hover {
+                opacity: 0.8;
+            }
+    
+            & img {
+                height: 20px;
+            }
+    }
+}

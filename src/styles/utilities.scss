@@ -1,0 +1,135 @@
+@import "./variables.scss";
+@import "./mixins.scss";
+
+// Reset Links
+ul {
+  margin: 0;
+  padding: 0;
+}
+li {
+  list-style: none;
+  cursor: pointer;
+}
+.bold {
+  font-weight: 700;
+  color: $primary;
+}
+
+.large-text {
+  font-size: 25px;
+  line-height: 35px;
+}
+
+.medium-text {
+  font-size: 20px;
+  line-height: 28px;
+}
+
+.normal-text {
+  font-size: 16px;
+  line-height: 22.4px;
+}
+.small-text {
+  font-size: 14px;
+  line-height: 19.6px;
+}
+.flex {
+  display: flex;
+}
+.flex-col {
+  flex-direction: column;
+}
+.flex-row {
+  flex-direction: row;
+}
+.justify-center {
+  justify-content: center;
+}
+.justify-start {
+  justify-content: flex-start;
+}
+.justify-end {
+  justify-content: flex-end;
+}
+.justify-between {
+  justify-content: space-between;
+}
+.flex-between {
+  display: flex;
+  justify-content: space-between;
+}
+.flex-evenly {
+  display: flex;
+  justify-content: space-evenly;
+}
+.flex-around {
+  display: flex;
+  justify-content: space-around;
+}
+
+.flex-start {
+  display: flex;
+  justify-content: flex-start;
+}
+
+.flex-center {
+  display: flex;
+  justify-content: center;
+}
+.flex-col {
+  flex-direction: column;
+}
+.flex-end {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.align-center {
+    align-items: center;
+}
+
+.align-right {
+    align-items: right;
+}
+
+.align-left {
+    align-items: left;
+}
+
+.h-screen {
+    height: 100vh;
+}
+
+.h-full {
+    height: 100%;
+}
+.w-full {
+    width: 100%;
+}
+.w-screen {
+    width: 100vw;
+}
+.rounded-full {
+    border-radius: 50%;
+}
+.mobile {
+  display: flex;
+}
+
+.desktop {
+  display: none;
+}
+@include tablet {
+  .mobile {
+      display: none;
+  }
+  .desktop {
+      display: flex;
+  }
+}
+.hide {
+  display: none;
+}
+.pointer {
+    cursor: pointer;
+}
