@@ -125,22 +125,22 @@ const index = () => {
           <div className='sidenav-link-name'>Dashboard</div>
         </li>
         <div className='sidenav-heading'>CUSTOMERS</div>
-        {customersData.map(data=>(
-          <li className={data.name==='Users' ? `active flex sidenav-link` : `flex sidenav-link` }>
+        {customersData.map((data, index)=>(
+          <li key={index} className={data.name==='Users' ? `active flex sidenav-link` : `flex sidenav-link` }>
             <img src={data.icon} alt={data.name} />
             <div className='sidenav-link-name'>{data.name}</div>
           </li>
           ))}
         <div className='sidenav-heading'>BUSINESSES</div>
-        {businessesData.map(data=>(
-          <li className={`flex sidenav-link`}>
+        {businessesData.map((data, index)=>(
+          <li key={index} className={`flex sidenav-link`}>
             <img src={data.icon} alt={data.name} />
             <div className='sidenav-link-name'>{data.name}</div>
           </li>
           ))}
         <div className='sidenav-heading'>SETTINGS</div>
-        {settingsData.map(data=>(
-          <li className={`flex sidenav-link`}>
+        {settingsData.map((data, index)=>(
+          <li key={index} className={`flex sidenav-link`}>
             <img src={data.icon} alt={data.name} />
             <div className='sidenav-link-name'>{data.name}</div>
           </li>
