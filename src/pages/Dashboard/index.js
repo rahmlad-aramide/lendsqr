@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import "./index.scss";
-import axios from "axios";
+// import axios from "axios";
 import Layout from "../../components/Layout";
 import filter from "../../assets/icons/users/filter.svg";
 import dotsIcon from "../../assets/icons/users/dots.svg";
