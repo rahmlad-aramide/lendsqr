@@ -16,6 +16,7 @@ import blacklist from "../../assets/icons/blacklist.svg";
 import activate from "../../assets/icons/activate.svg";
 import preloader from "../../assets/preloader.gif";
 import { data } from "./data";
+import { Link } from "react-router-dom";
 const Dashboard = () => {
   const gridData = [
     {
@@ -135,6 +136,7 @@ const Dashboard = () => {
     const year = `${date.getFullYear()}`;
     const hour = `${date.getHours()}`.padStart(2, 0);
     const min = `${date.getMinutes()}`.padStart(2, 0);
+
     let mon = "";
     switch (month) {
       case 1:
@@ -190,15 +192,6 @@ const Dashboard = () => {
         break;
       case "09":
         mon = "Sept";
-        break;
-      case 10:
-        mon = "Oct";
-        break;
-      case 11:
-        mon = "Nov";
-        break;
-      case 12:
-        mon = "Dec";
         break;
       default:
         break;
@@ -287,7 +280,7 @@ const Dashboard = () => {
                   </tr>
                 </thead>
                 <tbody>
-                  {users.map((user, index) => (
+                  {users.map((user) => (
                     <tr key={user.id}>
                       <td className={user.id === "1" ? `first` : ``}>
                         <div>{user.orgName}</div>
@@ -320,15 +313,17 @@ const Dashboard = () => {
                           user.id === "1" ? `first td-dots` : `td-dots`
                         }
                       >
-                        <button onClick={handleDots} className="dots">
+                        <button onClick={()=>handleDots()} className="dots">
                           <img src={dotsIcon} alt="dotsIcon" />
                         </button>
                         {dots && (
-                          <div className="td-dots-pop">
-                            <button>
-                              <img src={view} alt="View" />
-                              View Details
-                            </button>
+                          <div key={user.id} className="td-dots-pop">
+                            <Link to={`/dashboard/${user.id}`}>
+                              <button>
+                                <img src={view} alt="View" />
+                                View Details
+                              </button>
+                            </Link>
                             <button>
                               <img src={blacklist} alt="Blacklist" />
                               Blacklist User
@@ -403,6 +398,10 @@ const Dashboard = () => {
                         </option>
                       ))}
                     </select>
+                  </div>
+                  <div className="flex"> 
+                    <button className="btn-reset">Reset</button>
+                    <button className="btn-filter">Filter</button>
                   </div>
                 </form>
               </div>

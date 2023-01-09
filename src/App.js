@@ -1,7 +1,7 @@
 // import logo from './assets/lendsqr.svg';
 import './App.scss';
 import { Route, Routes } from 'react-router-dom';
-import {Login, Dashboard} from './pages'
+import {Login, Dashboard, User} from './pages'
 // import { pathname } from 'react-router-dom';
 
 function App() {
@@ -29,7 +29,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Login />} />
         <Route path="/dashboard" element={<Dashboard />} />
-        <Route></Route>
+        <Route path="/dashboard/:id" element={<User />} />
       </Routes>
     </div>
   );
