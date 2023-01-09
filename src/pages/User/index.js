@@ -4,7 +4,8 @@ import Layout from "../../components/Layout";
 import ArrowBack from '../../assets/icons/arrow.svg'
 import FilledStar from '../../assets/icons/users/star-filled.svg'
 import Star from '../../assets/icons/users/star.svg'
-import { data } from './data';
+// import { data } from './data';
+import axios from 'axios'
 
 const User = () => {
     const params = useParams();
