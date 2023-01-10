@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { Link, useParams } from 'react-router-dom'
-import axios from 'axios'
+import axios from 'axios';
 import Layout from "../../components/Layout";
 import ArrowBack from '../../assets/icons/arrow.svg'
 import FilledStar from '../../assets/icons/users/star-filled.svg'
@@ -10,17 +10,18 @@ import Star from '../../assets/icons/users/star.svg'
 const User = () => {
     const params = useParams();
     const {id} = params;
-    console.log(id)
     const [user, setUser] = useState([]);
+    
     useEffect(() => {
         const url = `https://6270020422c706a0ae70b72c.mockapi.io/lendsqr/api/v1/users/${id}`
         axios.get(url).then(res => {
           const userData = res.data;
           setUser(userData);
         })
-        // const userData = data;
-        // setUser(userData);
-      });
+    }, [id]);
+    
+    // const userData = data;
+    // setUser(userData);
 
   return (
     <Layout>
