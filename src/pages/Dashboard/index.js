@@ -78,7 +78,9 @@ const Dashboard = () => {
   const [loading, setLoading] = useState(true);
   const [total, setTotal] = useState(null);
   const [filterForm, setFilterForm] = useState(false);
-  const [dots, setDots] = useState(false);
+  // const [dots, setDots] = useState(false);
+  const [activeDot, setActiveDot] = useState(null);
+  // const [user, setUser] =useState();
 
   const showing = page * PER_PAGE;
   useEffect(() => {
@@ -123,12 +125,19 @@ const Dashboard = () => {
       setLoading(false);
     }, 1000);
   };
-  const handleDots = () => {
+  const handleDots = (id) => {
+      // setUser(user);
     //  users.findIndex(user=>user.id===id)
     // if(dots && id === index){setDots(!dots)};
     // console.log(`Button with ID ${id} was clicked`);
-    setDots(!dots);
+    setActiveDot(id)
+    console.log("activeDot ==-> ",activeDot);
+    console.log('id ===->',id);
   };
+  // const handleActiveDot = (id)=> {
+  //   setActiveDot(id)
+  // }
+  console.log(activeDot)
   const dateFunc = (dataDate) => {
     const date = new Date(dataDate);
     const day = `${date.getDate()}`.padStart(2, 0);
@@ -313,11 +322,11 @@ const Dashboard = () => {
                           user.id === "1" ? `first td-dots` : `td-dots`
                         }
                       >
-                        <button onClick={()=>handleDots()} className="dots">
+                        <button onClick={()=>handleDots(user.id)} className="dots">
                           <img src={dotsIcon} alt="dotsIcon" />
                         </button>
-                        {dots && (
-                          <div key={user.id} className="td-dots-pop">
+                        {activeDot === user.id ? (
+                          <div key={user.id} className="td-dots-pop" >
                             <Link to={`/dashboard/${user.id}`}>
                               <button>
                                 <img src={view} alt="View" />
@@ -333,7 +342,7 @@ const Dashboard = () => {
                               Activate User
                             </button>
                           </div>
-                        )}
+                        ): ""}
                       </td>
                     </tr>
                   ))}
