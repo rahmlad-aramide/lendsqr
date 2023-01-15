@@ -60,7 +60,7 @@ const User = () => {
                 <div className="overview-content-head-info flex">
                   <div className="dpix flex">
                     <img
-                      src={!user?.profile?.avatar? user.profile.avatar : Avatar}
+                      src={user?.profile?.avatar? user.profile.avatar : Avatar}
                       alt={`${user?.profile?.firstName} ${user?.profile?.lastName}`}
                     />
                   </div>

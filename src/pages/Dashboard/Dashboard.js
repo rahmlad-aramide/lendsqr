@@ -80,6 +80,17 @@ const Dashboard = () => {
   const [total, setTotal] = useState(null);
   const [filterForm, setFilterForm] = useState(false);
   const [activeDot, setActiveDot] = useState(null);
+  const [activeStatus, setActiveStatus] = useState(null);
+  const [updateStatus, setUpdateStatus] = useState("Inactive");
+  const [organizationValue, setOrganizationValue] = useState("");
+  const [usernameValue, setUsernameValue] = useState("");
+  const [emailValue, setEmailValue] = useState("");
+  const [dateValue, setDateValue] = useState("");
+  const [numberValue, setNumberValue] = useState("");
+  const [statusValue, setStatusValue] = useState("");
+  // const [filterBy, setFilterBy] = useState({});
+
+  const filterByObject = {}
 
   const showing = page * PER_PAGE;
   useEffect(() => {
@@ -97,12 +108,48 @@ const Dashboard = () => {
     //   setLoading(false);
     // }, 2000);
     // setTotal(userData.length);
-  }, [page]);
+  }, [page, filterByObject.username]);
   let pages = Math.ceil(total / PER_PAGE);
 
   const handleFilter = () => {
     setFilterForm(!filterForm);
   };
+  const handleChange = (e) => {
+    e.preventDefault();
+    if(e.target.name ==='username'){
+      setUsernameValue(e.target.value);
+    } else if(e.target.name ==='email'){
+      setEmailValue(e.target.value);
+    } else if(e.target.name ==='phone'){
+      setNumberValue(e.target.value);
+    } else if(e.target.name ==='date'){
+      setDateValue(e.target.value);
+    } else if(e.target.name ==='organization'){
+      setOrganizationValue(e.target.value);
+    } else if(e.target.name ==='status'){
+      setStatusValue(e.target.value);
+    }
+  }
+  const handleSubmitFilter = (e) => {
+    e.preventDefault();
+      filterByObject['username'] = usernameValue;
+      filterByObject['email'] = emailValue;
+      filterByObject['phone'] = numberValue;
+      filterByObject['organization'] = organizationValue;
+      filterByObject['status'] = statusValue;
+      filterByObject['date'] = dateValue
+
+      console.log(filterByObject);
+  }
+  const handleResetFilter = (e) => {
+    e.preventDefault();
+    setDateValue("");
+    setEmailValue("");
+    setNumberValue("");
+    setOrganizationValue("");
+    setStatusValue("");
+    setUsernameValue("");
+  }
   const handleNext = () => {
     setLoading(true);
     setPage((prev) => prev + 1);
@@ -127,6 +174,10 @@ const Dashboard = () => {
   const handleDots = (id) => {
     setActiveDot(id)
   };
+  const handleStatus = (id, stat) => {
+    setActiveStatus(id)
+    setUpdateStatus(stat)
+  }
  
   const dateFunc = (dataDate) => {
     const date = new Date(dataDate);
@@ -299,13 +350,15 @@ const Dashboard = () => {
                       <td
                         className={user.id === "1" ? `first status` : `status`}
                       >
+                        <>
                         <div
                           className={
-                            user.id === "1" ? `first status` : `status`
+                            `${user.id}` === "1" ? `first status` : `status`
                           }
                         >
-                          Inactive
+                          {activeStatus===user.id ? updateStatus: "Inactive"}
                         </div>
+                        </>
                       </td>
                       <td
                         className={
@@ -324,11 +377,11 @@ const Dashboard = () => {
                                 View Details
                               </button>
                             </Link>
-                            <button>
+                            <button onClick={()=>handleStatus(user.id, "Blacklisted")}>
                               <img src={blacklist} alt="Blacklist" />
                               Blacklist User
                             </button>
-                            <button>
+                            <button onClick={()=>handleStatus(user.id, "Active")}>
                               <img src={activate} alt="Activate" />
                               Activate User
                             </button>
@@ -342,10 +395,15 @@ const Dashboard = () => {
             )}
             {filterForm && (
               <div className="popup">
-                <form>
+                <form onSubmit={handleSubmitFilter}>
                   <label htmlFor="organization">Organization</label>
                   <div>
-                    <select className="organization" name="organization">
+                    <select 
+                      className="organization" 
+                      name="organization"
+                      value={organizationValue}
+                      onChange={handleChange}
+                      >
                       {users.map((user) => (
                         <option key={user.id}>{user.orgName}</option>
                       ))}
@@ -358,6 +416,8 @@ const Dashboard = () => {
                       placeholder="User"
                       name="username"
                       id="username"
+                      value={usernameValue}
+                      onChange={handleChange}
                     />
                   </div>
                   <label htmlFor="email">Email</label>
@@ -367,6 +427,8 @@ const Dashboard = () => {
                       placeholder="Email"
                       name="email"
                       id="email"
+                      value={emailValue}
+                      onChange={handleChange}
                     />
                   </div>
                   <label htmlFor="date">Date</label>
@@ -376,6 +438,8 @@ const Dashboard = () => {
                       placeholder="Date"
                       name="date"
                       id="date"
+                      value={dateValue}
+                      onChange={handleChange}
                     />
                   </div>
                   <label htmlFor="phone">Phone Number</label>
@@ -385,13 +449,21 @@ const Dashboard = () => {
                       placeholder="Phone number"
                       name="phone"
                       id="phone"
+                      value={numberValue}
+                      onChange={handleChange}
                     />
                   </div>
-                  <label htmlFor="organization">Status</label>
+                  <label htmlFor="status">Status</label>
                   <div>
-                    <select className="organization" name="organization">
+                    <select 
+                      className="organization" 
+                      name="status"
+                      value={statusValue}
+                      onChange={handleChange}
+                      >
                       {statusData.map((s) => (
                         <option
+                          value={s.name==="Select"? "": s.name}
                           style={s.name === "Select" ? { color: s.color } : {}}
                         >
                           {s.name}
@@ -400,8 +472,8 @@ const Dashboard = () => {
                     </select>
                   </div>
                   <div className="flex"> 
-                    <button className="btn-reset">Reset</button>
-                    <button className="btn-filter">Filter</button>
+                    <button onClick={handleResetFilter} className="btn-reset">Reset</button>
+                    <button type="submit" className="btn-filter">Filter</button>
                   </div>
                 </form>
               </div>
