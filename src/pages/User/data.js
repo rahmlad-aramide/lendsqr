@@ -1,4 +1,4 @@
-export const data = [
+export const data =
     {
         "createdAt": "2072-12-27T03:44:22.522Z",
         "orgName": "labore-dolor-et",
@@ -44,4 +44,3 @@ export const data = [
         },
         "id": "1"
     }
-]

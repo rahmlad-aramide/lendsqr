@@ -6,6 +6,8 @@ import avatar from '../../assets/icons/avatar.svg';
 import dropdown from '../../assets/icons/dropdown.svg';
 import docs from '../../assets/icons/settings/audit-log.svg';
 import Search from '../Search';
+import { FaTimes, FaBars } from 'react-icons/fa';
+
 
 const TopNav = () => {
   const navRef = useRef();
@@ -36,11 +38,11 @@ const TopNav = () => {
           <img src={logo} alt='Lendsqr' />
         </div>
         <div className='open-nav flex-end align-center'>
-          <button onClick={showMenu}>Open</button>
+          <button onClick={showMenu}><FaBars size={30} /></button>
         </div>
         <div className='mobile-nav' ref={navRef}>
           <div className='close-nav flex-end'>
-            <button onClick={showMenu}>Close</button>
+            <button onClick={showMenu}><FaTimes size={30} /></button>
           </div>
           <div className='mobile-nav-links flex-col flex-between align-center'>
             <div className='flex align-center'>

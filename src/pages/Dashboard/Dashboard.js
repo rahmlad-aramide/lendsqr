@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import "./index.scss";
-// import axios from "axios";
+import axios from "axios";
 import Layout from "../../components/Layout";
 import filter from "../../assets/icons/users/filter.svg";
 import dotsIcon from "../../assets/icons/users/dots.svg";
@@ -15,8 +15,10 @@ import view from "../../assets/icons/view.svg";
 import blacklist from "../../assets/icons/blacklist.svg";
 import activate from "../../assets/icons/activate.svg";
 import preloader from "../../assets/preloader.gif";
-import { data } from "./data";
 import { Link } from "react-router-dom";
+import { FaTimes } from 'react-icons/fa';
+// import { data } from "./data";
+
 const Dashboard = () => {
   const gridData = [
     {
@@ -73,31 +75,28 @@ const Dashboard = () => {
   ];
   const PER_PAGE = 10;
   const [page, setPage] = useState(1);
-  // const [users, setUsers] = useState(data);
   const [users, setUsers] = useState([]);
   const [loading, setLoading] = useState(true);
   const [total, setTotal] = useState(null);
   const [filterForm, setFilterForm] = useState(false);
-  // const [dots, setDots] = useState(false);
   const [activeDot, setActiveDot] = useState(null);
-  // const [user, setUser] =useState();
 
   const showing = page * PER_PAGE;
   useEffect(() => {
     const skip = page * PER_PAGE - PER_PAGE;
-    // const url = 'https://6270020422c706a0ae70b72c.mockapi.io/lendsqr/api/v1/users'
-    // axios.get(url).then(res => {
-    //   const userData = res.data;
-    //   setUsers(userData?.slice(skip, skip + PER_PAGE));
-    //   setLoading(false);
-    //   setTotal(userData.length);
-    // })
-    const userData = data;
-    setUsers(userData?.slice(skip, skip + PER_PAGE));
-    setTimeout(() => {
+    const url = 'https://6270020422c706a0ae70b72c.mockapi.io/lendsqr/api/v1/users'
+    axios.get(url).then(res => {
+      const userData = res.data;
+      setUsers(userData?.slice(skip, skip + PER_PAGE));
       setLoading(false);
-    }, 2000);
-    setTotal(userData.length);
+      setTotal(userData.length);
+    })
+    // const userData = data;
+    // setUsers(userData?.slice(skip, skip + PER_PAGE));
+    // setTimeout(() => {
+    //   setLoading(false);
+    // }, 2000);
+    // setTotal(userData.length);
   }, [page]);
   let pages = Math.ceil(total / PER_PAGE);
 
@@ -126,18 +125,9 @@ const Dashboard = () => {
     }, 1000);
   };
   const handleDots = (id) => {
-      // setUser(user);
-    //  users.findIndex(user=>user.id===id)
-    // if(dots && id === index){setDots(!dots)};
-    // console.log(`Button with ID ${id} was clicked`);
     setActiveDot(id)
-    console.log("activeDot ==-> ",activeDot);
-    console.log('id ===->',id);
   };
-  // const handleActiveDot = (id)=> {
-  //   setActiveDot(id)
-  // }
-  console.log(activeDot)
+ 
   const dateFunc = (dataDate) => {
     const date = new Date(dataDate);
     const day = `${date.getDate()}`.padStart(2, 0);
@@ -327,6 +317,7 @@ const Dashboard = () => {
                         </button>
                         {activeDot === user.id ? (
                           <div key={user.id} className="td-dots-pop" >
+                            <div className="close-modal" onClick={()=>handleDots(null)}><FaTimes size={20} /></div>
                             <Link to={`/dashboard/${user.id}`}>
                               <button>
                                 <img src={view} alt="View" />
@@ -433,6 +424,7 @@ const Dashboard = () => {
             >
               <img src={leftArrow} alt="Arrow down" />
             </button>
+            <div>
             {Array.from({ length: pages }, (_, index) => index + 1).map(
               (value) => (
                 <button
@@ -442,7 +434,7 @@ const Dashboard = () => {
                   {value}
                 </button>
               )
-            )}
+            )}</div>
             <button
               className={page >= pages ? `greater` : `greater active`}
               disabled={page >= pages}

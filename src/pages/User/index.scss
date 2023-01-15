@@ -1,0 +1,288 @@
+@import '../.././styles/utilities.scss';
+
+.user {
+    margin-right: 20px;
+    @include tablet {
+        margin-right: 60px;
+    }
+    .back {
+        img {
+            margin-right: 14px;
+        }
+
+        span {
+            font-family: $WorkSans;
+            font-style: normal;
+            font-weight: 400;
+            font-size: 16px;
+            line-height: 19px;
+            color: $tertiary;
+            text-decoration: none;
+        }
+    }
+
+    .header {
+        flex-direction: column;
+        @include tablet {
+            flex-direction: row;
+        }
+        div {
+
+            h1 {
+                color: $primary;
+                font-family: $WorkSans;
+                font-style: normal;
+                font-weight: 500;
+                font-size: 24px;
+                line-height: 28px;
+                margin-bottom: 20px;
+            }
+            button {
+                font-family: $WorkSans;
+                font-style: normal;
+                font-weight: 600;
+                font-size: 14px;
+                line-height: 16px;
+                text-align: center;
+                letter-spacing: 0.1em;
+                text-transform: uppercase;
+                border-radius: 8px;
+                padding: 6px 8px;
+                cursor: pointer;
+
+                @include tablet {
+                    padding: 12px 16px;
+                    margin: auto;
+                }
+
+                span {
+                    display: none;
+                    @include tablet {
+                        display: inline-flex;
+                    }
+                }
+            }
+            button.blacklist {
+                color: #E4033B;
+                border: 1px solid #E4033B;
+            }
+            button.activate {
+                color: $secondary;
+                border: 1px solid $secondary;
+                margin-left: 20px;
+            }
+        }
+    }
+    .overview {
+        &-content {
+            div {
+                div {
+                    text-align: center;
+                    @include tablet {
+                        text-align: left;
+                    }
+                }
+            }
+
+            &-head {
+                background-color: white;
+                min-height: 150px;
+                height: fit-content;
+                padding: 20px;
+                margin-top: 30px;
+                padding-bottom: 2px;
+                border: 1px solid rgba(33, 63, 125, 0.06);
+                box-shadow: 3px 5px 20px rgba(0, 0, 0, 0.04);
+                border-radius: 4px;
+
+                &-info {
+                    overflow-x: auto;
+                    align-items: center;
+                    flex-direction: column;
+                    @include tablet {
+                        flex-direction: row;
+                    }
+                    .dpix {
+                        width: 100px;
+                        height: 100px;
+                        aspect-ratio: 1;
+                        align-items: center;
+                        margin: 0 0 10px 10px;
+                        img {
+                            width: 80px;
+                            height: 80px;
+                            border-radius: 50%;
+                        }
+                    }
+                    .line-right {
+                        height: 80px;
+                        margin: 0 10px;
+                        width: 1px;
+                        display: none;
+                        background-color: #545F7D40;
+                        @include tablet {
+                            margin: 0 30px;
+                            display: flex;
+
+                        }
+                    }
+                    .username {
+                        font-family: $WorkSans;
+                        font-style: normal;
+                        font-weight: 500;
+                        font-size: 22px;
+                        line-height: 26px;
+                        color: $primary;
+                    }
+                    .ac-number {
+                        font-family: $WorkSans;
+                        font-style: normal;
+                        font-weight: 400;
+                        font-size: 14px;
+                        line-height: 16px;
+                        color: $primary;
+                        margin-top: 8px;
+                    }
+                    .user-tier {
+                        .head {
+                            font-family: $WorkSans;
+                            font-style: normal;
+                            font-weight: 500;
+                            font-size: 14px;
+                            line-height: 16px;
+                            color: $tertiary;
+                            margin-bottom: 10px;
+                            margin-top: 8px;
+                        }
+
+                    }
+                    .ac-balance {
+                        .balance {
+                            font-family: $WorkSans;
+                            font-style: normal;
+                            font-weight: 500;
+                            font-size: 22px;
+                            line-height: 26px;
+                            color: $primary;
+                            margin-bottom: 12px;
+                        }
+                        .details {
+                            font-family: 'Work Sans';
+                            font-style: normal;
+                            font-weight: 400;
+                            font-size: 12px;
+                            line-height: 14px;
+                            color: $primary;
+                        }
+                    }
+                }
+                &-tabs {
+                    margin-top: 50px;
+                    overflow-x: auto;
+                    display: grid;
+                    grid-template-columns: repeat(2, 1fr);
+                    @include tablet {
+                        grid-template-columns: repeat(3, 1fr);
+                    }
+                    @include laptop {
+                        grid-template-columns: repeat(6, 1fr);
+                    }
+                    div {
+                        display: flex;
+                        font-family: 'Work Sans';
+                        font-style: normal;
+                        font-weight: 400;
+                        font-size: 16px;
+                        line-height: 19px;
+                        text-align: center;
+                        color: rgba(0, 0, 0, 0.8);
+                        cursor: pointer;
+                        padding: 5px;
+                        @include tablet {
+                            padding: 0 10px;
+                        }
+                        @include laptop {
+                            padding: 0 20px;
+                        }
+                    }
+                    .active {
+                        color: $secondary;
+                        border-bottom: 2px solid $secondary;
+                        padding: 0 20px 10px 20px;
+                        width: fit-content;
+                    }
+                }
+            }
+            &-body {
+                background-color: white;
+                border: 1px solid rgba(33, 63, 125, 0.06);
+                box-shadow: 3px 5px 20px rgba(0, 0, 0, 0.04);
+                border-radius: 4px;
+                padding: 10px;
+                margin: 10px 0;
+                overflow-x: auto;
+                @include tablet {
+                    padding: 30px;
+                    margin: 30px 0;
+                }
+                h2 {
+                    font-family: $WorkSans;
+                    font-style: normal;
+                    font-weight: 500;
+                    font-size: 16px;
+                    line-height: 19px;
+                    color: $primary;
+                    margin-bottom: 30px;
+                }
+                h2:not(:first-child){
+                    margin-top: 30px;
+                }
+                .horizontal-line {
+                    display: none;
+                    width: 100%;
+                    height: 1px;
+                    background-color: $primary;
+                    opacity: 0.1;
+                    margin: 30px 0;
+                    @include tablet {
+                        display: flex;
+                    }
+                }
+                .details-grids {
+                    display: grid;
+                    gap: 10px;
+                    grid-template-columns: repeat(1, 1fr);;
+                    @include tablet {
+                        gap: 20px;
+                        grid-template-columns: repeat(3, 1fr);
+                    }
+                    @include laptop {
+                        gap: 30px;
+                        grid-template-columns: repeat(5, 1fr); 
+                    }
+                    &-grid {
+                        .que {
+                            color: $tertiary;
+                            font-family: $WorkSans;
+                            font-style: normal;
+                            font-weight: 400;
+                            font-size: 12px;
+                            line-height: 14px;
+                            text-align: left;
+                        }
+                        .ans {
+                            color: $tertiary;
+                            font-family: $WorkSans;
+                            font-style: normal;
+                            font-weight: 500;
+                            font-size: 16px;
+                            line-height: 19px;
+                            margin-top: 10px;
+                            text-align: left;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
