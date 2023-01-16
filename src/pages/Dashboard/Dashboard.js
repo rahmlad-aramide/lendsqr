@@ -46,7 +46,7 @@ const Dashboard = () => {
       value: "2,453",
     },
   ];
-  const statusData = [
+  const statusDataStyling = [
     {
       name: "Select",
       color: "#545F7D70",
@@ -73,6 +73,8 @@ const Dashboard = () => {
       bg: "#E4033B60",
     },
   ];
+
+  const statusData = Array.from({ length: 100 }, (_, i) => ({ id: i, name: "Inactive" }));
   const PER_PAGE = 10;
   const [page, setPage] = useState(1);
   const [users, setUsers] = useState([]);
@@ -80,8 +82,8 @@ const Dashboard = () => {
   const [total, setTotal] = useState(null);
   const [filterForm, setFilterForm] = useState(false);
   const [activeDot, setActiveDot] = useState(null);
-  const [activeStatus, setActiveStatus] = useState(null);
-  const [updateStatus, setUpdateStatus] = useState("Inactive");
+  // const [activeStatus, setActiveStatus] = useState(null);
+  const [updateStatus, setUpdateStatus] = useState(statusData);
   const [organizationValue, setOrganizationValue] = useState("");
   const [usernameValue, setUsernameValue] = useState("");
   const [emailValue, setEmailValue] = useState("");
@@ -90,6 +92,7 @@ const Dashboard = () => {
   const [statusValue, setStatusValue] = useState("");
   // const [filterBy, setFilterBy] = useState({});
 
+  
   const filterByObject = {}
 
   const showing = page * PER_PAGE;
@@ -100,7 +103,7 @@ const Dashboard = () => {
       const userData = res.data;
       setUsers(userData?.slice(skip, skip + PER_PAGE));
       setLoading(false);
-      setTotal(userData.length);
+      setTotal(userData.length);  
     })
     // const userData = data;
     // setUsers(userData?.slice(skip, skip + PER_PAGE));
@@ -108,9 +111,18 @@ const Dashboard = () => {
     //   setLoading(false);
     // }, 2000);
     // setTotal(userData.length);
-  }, [page, filterByObject.username]);
+  }, [page, total]);
   let pages = Math.ceil(total / PER_PAGE);
 
+  const modifyStatus = (id, newName) => {
+    const newData = updateStatus.map(item => {
+      if (item.id === id) {
+        return { ...item, name: newName };
+      }
+      return item;
+    });
+    setUpdateStatus(newData);
+  }
   const handleFilter = () => {
     setFilterForm(!filterForm);
   };
@@ -174,10 +186,11 @@ const Dashboard = () => {
   const handleDots = (id) => {
     setActiveDot(id)
   };
-  const handleStatus = (id, stat) => {
-    setActiveStatus(id)
-    setUpdateStatus(stat)
-  }
+  // const handleStatus = (id, stat) => {
+  //   // setActiveStatus(id)
+  //   setUpdateStatus(stat)
+  //   modifyData(id, stat)
+  // }
  
   const dateFunc = (dataDate) => {
     const date = new Date(dataDate);
@@ -350,16 +363,15 @@ const Dashboard = () => {
                       <td
                         className={user.id === "1" ? `first status` : `status`}
                       >
-                        <>
                         <div
                           className={
-                            `${user.id}` === "1" ? `first status` : `status`
+                            `${user.id}` === "1" ? `first status ${updateStatus[user.id-1].name}` : `status ${updateStatus[user.id-1].name}`
                           }
                         >
-                          {activeStatus===user.id ? updateStatus: "Inactive"}
+                            {updateStatus[user.id-1].name}
                         </div>
-                        </>
                       </td>
+                         
                       <td
                         className={
                           user.id === "1" ? `first td-dots` : `td-dots`
@@ -369,7 +381,7 @@ const Dashboard = () => {
                           <img src={dotsIcon} alt="dotsIcon" />
                         </button>
                         {activeDot === user.id ? (
-                          <div key={user.id} className="td-dots-pop" >
+                          <div key={user.id} className="td-dots-pop">
                             <div className="close-modal" onClick={()=>handleDots(null)}><FaTimes size={20} /></div>
                             <Link to={`/dashboard/${user.id}`}>
                               <button>
@@ -377,11 +389,11 @@ const Dashboard = () => {
                                 View Details
                               </button>
                             </Link>
-                            <button onClick={()=>handleStatus(user.id, "Blacklisted")}>
+                            <button onClick={()=>modifyStatus(user.id-1, "Blacklisted")}>
                               <img src={blacklist} alt="Blacklist" />
                               Blacklist User
                             </button>
-                            <button onClick={()=>handleStatus(user.id, "Active")}>
+                            <button onClick={()=>modifyStatus(user.id-1, "Active")}>
                               <img src={activate} alt="Activate" />
                               Activate User
                             </button>
@@ -461,7 +473,7 @@ const Dashboard = () => {
                       value={statusValue}
                       onChange={handleChange}
                       >
-                      {statusData.map((s) => (
+                      {statusDataStyling.map((s) => (
                         <option
                           value={s.name==="Select"? "": s.name}
                           style={s.name === "Select" ? { color: s.color } : {}}
