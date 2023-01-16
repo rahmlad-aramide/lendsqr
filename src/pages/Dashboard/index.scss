@@ -88,6 +88,14 @@
             }
         }
 
+        .h-filterForm {
+            min-height: 730px !important;
+        }
+        tbody {
+            display: table-row-group;
+            vertical-align: top;
+            border-color: inherit;
+        }
         .table {
             width: 100%;
             overflow-x: auto;
@@ -99,7 +107,9 @@
             padding-bottom: 0;
             margin: 30px 30px 20px 0;
             position: relative;
+            // min-height: 130px;
 
+            
             .preloader {
                 width: 100%;
                 display: flex;

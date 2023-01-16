@@ -93,7 +93,7 @@ const Dashboard = () => {
   // const [filterBy, setFilterBy] = useState({});
 
   
-  const filterByObject = {}
+  // const filterByObject = {}
 
   const showing = page * PER_PAGE;
   useEffect(() => {
@@ -101,17 +101,32 @@ const Dashboard = () => {
     const url = 'https://6270020422c706a0ae70b72c.mockapi.io/lendsqr/api/v1/users'
     axios.get(url).then(res => {
       const userData = res.data;
-      setUsers(userData?.slice(skip, skip + PER_PAGE));
+      setUsers(userData?.filter(item => {
+        return (
+          (!usernameValue || item.userName.toLowerCase().includes(usernameValue.toLowerCase())) &&
+          (!emailValue || item.email === emailValue) &&
+          (!organizationValue || item.orgName === organizationValue) &&
+          (!numberValue || item.profile.phoneNumber === numberValue) 
+        );
+      }).slice(skip, skip + PER_PAGE));
       setLoading(false);
       setTotal(userData.length);  
     })
+
     // const userData = data;
-    // setUsers(userData?.slice(skip, skip + PER_PAGE));
+    // setUsers(userData?.filter(item => {
+    //     return (
+    //       (!usernameValue || item.userName.toLowerCase().includes(usernameValue.toLowerCase())) &&
+    //       (!emailValue || item.email === emailValue) &&
+    //       (!organizationValue || item.orgName === organizationValue) &&
+    //       (!numberValue || item.phoneNumber === numberValue) 
+    //     );
+    //   }).slice(skip, skip + PER_PAGE));
     // setTimeout(() => {
     //   setLoading(false);
     // }, 2000);
     // setTotal(userData.length);
-  }, [page, total]);
+  }, [page, total, usernameValue, emailValue, organizationValue, numberValue]);
   let pages = Math.ceil(total / PER_PAGE);
 
   const modifyStatus = (id, newName) => {
@@ -144,14 +159,15 @@ const Dashboard = () => {
   }
   const handleSubmitFilter = (e) => {
     e.preventDefault();
-      filterByObject['username'] = usernameValue;
-      filterByObject['email'] = emailValue;
-      filterByObject['phone'] = numberValue;
-      filterByObject['organization'] = organizationValue;
-      filterByObject['status'] = statusValue;
-      filterByObject['date'] = dateValue
+    handleChange(e)
+      // filterByObject['username'] = usernameValue;
+      // filterByObject['email'] = emailValue;
+      // filterByObject['phone'] = numberValue;
+      // filterByObject['organization'] = organizationValue;
+      // filterByObject['status'] = statusValue;
+      // filterByObject['date'] = dateValue
 
-      console.log(filterByObject);
+      // console.log(filterByObject);
   }
   const handleResetFilter = (e) => {
     e.preventDefault();
@@ -283,13 +299,13 @@ const Dashboard = () => {
           ))}
         </div>
         <div className="table-div">
-          <div className="table flex">
+          <div className={!filterForm ? `table flex`: `table flex h-filterForm`}>
             {loading ? (
               <div className="preloader">
                 <img src={preloader} alt="Loading..." />
               </div>
             ) : (
-              <table className="table-table flex-col w-full">
+              <table className="table-table flex-col w-full ">
                 <thead>
                   <tr>
                     <th>
