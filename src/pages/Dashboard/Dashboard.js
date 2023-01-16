@@ -55,12 +55,12 @@ const Dashboard = () => {
     {
       name: "Active",
       color: "#39CD62",
-      bg: "#39CD6260",
+      bg: "#39CD6270",
     },
     {
       name: "Inactive",
       color: "#545F7D",
-      bg: "#545F7D60",
+      bg: "#545F7D70",
     },
     {
       name: "Pending",
@@ -70,7 +70,7 @@ const Dashboard = () => {
     {
       name: "Blacklisted",
       color: "#E4033B",
-      bg: "#E4033B60",
+      bg: "#E4033B70",
     },
   ];
 
